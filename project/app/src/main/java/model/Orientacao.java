@@ -15,8 +15,8 @@ public class Orientacao {
     private int id;
     private Date dataOrientacao;
     private String conteudo;
-    private Adolescente adolescente;
-    private Orientador orientador;
+    private int idAdolescente;
+    private int idOrientador;
     
     public void Orientacao() {
         
@@ -46,27 +46,27 @@ public class Orientacao {
         this.conteudo = conteudo;
     }
 
-    public Adolescente getAdolescente() {
-        return adolescente;
+    public int getIdAdolescente() {
+        return idAdolescente;
     }
 
-    public void setAdolescente(Adolescente adolescente) {
-        this.adolescente = adolescente;
+    public void setIdAdolescente(int idAdolescente) {
+        this.idAdolescente = idAdolescente;
     }
 
-    public Orientador getOrientador() {
-        return orientador;
+    public int getIdOrientador() {
+        return idOrientador;
     }
 
-    public void setOrientador(Orientador orientador) {
-        this.orientador = orientador;
+    public void setIdOrientador(int idOrientador) {
+        this.idOrientador = idOrientador;
     }
 
     @Override
     public String toString() {
         return "Orientacao{" + "id=" + id + ", dataOrientacao=" + dataOrientacao + ", conteudo=" + conteudo + ", adolescente=" + 
-                adolescente + ", orientador=" + 
-                orientador + '}';
+                idAdolescente + ", orientador=" + 
+                idOrientador + '}';
     }
     
     

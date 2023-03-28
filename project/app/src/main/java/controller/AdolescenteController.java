@@ -36,7 +36,7 @@ public class AdolescenteController {
             statement.setDate(4, new Date(adolescente.getDataInicio().getTime()));
             statement.setBoolean(5, adolescente.fazLA());
             statement.setBoolean(6, adolescente.fazPSC());
-            statement.setInt(7, adolescente.getOrientador().getId());
+            statement.setInt(7, adolescente.getIdOrientador());
             
             
             
@@ -75,7 +75,7 @@ public class AdolescenteController {
             statement.setDate(4, new Date(adolescente.getDataInicio().getTime()));
             statement.setBoolean(5, adolescente.fazLA());
             statement.setBoolean(6, adolescente.fazPSC());
-            statement.setInt(7, adolescente.getOrientador().getId());
+            statement.setInt(7, adolescente.getIdOrientador());
             statement.setInt(8, adolescente.getId());
             
             
@@ -144,7 +144,7 @@ public class AdolescenteController {
                 
                 
                 //preciso "converter" a id do orientador no objeto orientador
-                adolescente.setOrientador(resultSet.getInt("id_orientador"));
+                adolescente.setIdOrientador(resultSet.getInt("id_orientador"));
                 
                
                 

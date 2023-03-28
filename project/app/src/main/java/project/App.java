@@ -6,27 +6,27 @@ import java.util.Date;
 import model.Adolescente;
 import model.Orientador;
 import model.Orientacao;
+import controller.OrientadorController;
 
 public class App {
     
 
     public static void main(String[] args) {
         
+        OrientadorController orientadorController = new OrientadorController();
         Orientador orientador1 = new Orientador();
-        orientador1.setId(001);
-        orientador1.setNome("Nathalia");
+        orientador1.setId(1);
+        orientador1.setNome("Nathalia Almeida");
         
-        System.out.println(orientador1.toString());
+        Orientador orientador2 = new Orientador();
+        orientador2.setNome("Lucas");
         
-        Adolescente adolescente1 = new Adolescente();
-        System.out.println(adolescente1.toString());
-        adolescente1.setNome("Lucas");
-        adolescente1.setDataInicio(new Date(24/03/2023));
-        adolescente1.setDataNasc(new Date(02/07/1991));
-        adolescente1.setOrientador(orientador1);
-        
-        System.out.println(adolescente1.toString());
+       orientadorController.save(orientador2);
         
         
+       
+        
+        
+        System.out.println(orientadorController.getAll());
     }
 }

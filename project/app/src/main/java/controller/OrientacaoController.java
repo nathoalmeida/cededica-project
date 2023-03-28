@@ -32,8 +32,8 @@ public class OrientacaoController {
             statement = connection.prepareStatement(sql);
             statement.setDate(1, new Date(orientacao.getDataOrientacao().getTime()));
             statement.setString(2, orientacao.getConteudo());
-            statement.setInt(3, orientacao.getOrientador().getId());
-            statement.setInt(4, orientacao.getAdolescente().getId());
+            statement.setInt(3, orientacao.getIdOrientador());
+            statement.setInt(4, orientacao.getIdAdolescente());
             
             
             
@@ -65,8 +65,8 @@ public class OrientacaoController {
             
             statement.setDate(1, new Date(orientacao.getDataOrientacao().getTime()));
             statement.setString(2, orientacao.getConteudo());
-            statement.setInt(3, orientacao.getOrientador().getId());
-            statement.setInt(4, orientacao.getAdolescente().getId());
+            statement.setInt(3, orientacao.getIdOrientador());
+            statement.setInt(4, orientacao.getIdAdolescente());
             statement.setInt(5, orientacao.getId());
             
             
@@ -127,10 +127,8 @@ public class OrientacaoController {
                 orientacao.setId(resultSet.getInt("id"));
                 orientacao.setConteudo(resultSet.getString("conteudo"));
                 orientacao.setDataOrientacao(resultSet.getDate("dataOrientacao"));
-                
-                //preciso "converter" a id do orientador no objeto orientador
-                orientacao.setAdolescente(resultSet.getInt("idAdolescente"));
-                orientacao.setOrientador(resultSet.getInt("idOrientador"));
+                orientacao.setIdAdolescente(resultSet.getInt("idAdolescente"));
+                orientacao.setIdOrientador(resultSet.getInt("idOrientador"));
                 
                
                 

@@ -13,7 +13,11 @@ public class Orientador {
     private int id;
     private String nome;
     
-    public void Orientador(int id, String nome) {
+    public Orientador() {
+        
+    }
+    
+    public Orientador(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }

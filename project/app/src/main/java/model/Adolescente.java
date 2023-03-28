@@ -4,12 +4,16 @@
  */
 package model;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
  * @author nathoalmeida
  */
 public class Adolescente {
+
+   
     
     private int id;
     private String nome;
@@ -18,13 +22,14 @@ public class Adolescente {
     private Date dataInicio;
     private boolean fazLA;
     private boolean fazPSC;
-    private Orientador orientador;
+    private int idOrientador;
     
-    public void Adolescente() {
+    public Adolescente() {
         fazLA = true;
-        fazPSC = false;
-        
+        dataInicio = Date.from(Instant.now());
     }
+    
+    
 
     public int getId() {
         return id;
@@ -82,24 +87,21 @@ public class Adolescente {
         this.fazPSC = fazPSC;
     }
 
-    public Orientador getOrientador() {
-        return orientador;
+    public int getIdOrientador() {
+        return idOrientador;
     }
 
-    public void setOrientador(Orientador orientador) {
-        this.orientador = orientador;
+    public void setIdOrientador(int idOrientador) {
+        this.idOrientador = idOrientador;
     }
 
     @Override
     public String toString() {
-        if (orientador != null) {
-            return "Adolescente{" + "id=" + id + ", nome=" + nome + ", numProcesso=" + numProcesso + ", dataNasc=" + dataNasc + ", dataInicio=" + dataInicio
-                + ", fazLA=" + fazLA + ", fazPSC=" + fazPSC + ", orientador=" + orientador.getNome() + '}';
-        } else {
+        
         return "Adolescente{" + "id=" + id + ", nome=" + nome + ", numProcesso=" + numProcesso + ", dataNasc=" + dataNasc + ", dataInicio=" + dataInicio
-                + ", fazLA=" + fazLA + ", fazPSC=" + fazPSC + ", orientador=" + orientador + '}';
+                + ", fazLA=" + fazLA + ", fazPSC=" + fazPSC + ", idOrientador=" + idOrientador + '}';
         }
-    }
+    
     
     
     
