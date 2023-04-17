@@ -57,6 +57,7 @@ public class MainScreen extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         jPanelTop.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -68,6 +69,11 @@ public class MainScreen extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 102));
         jButton2.setText("Novo adolescente");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 102));
@@ -266,8 +272,6 @@ public class MainScreen extends javax.swing.JFrame {
         jTableOrientacao.setRowHeight(35);
         jTableOrientacao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableOrientacao.setShowGrid(true);
-        jTableOrientacao.setShowHorizontalLines(true);
-        jTableOrientacao.setShowVerticalLines(true);
         jTableOrientacao.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableOrientacao);
         jTableOrientacao.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -378,10 +382,16 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
 
-        NewOrientadorScreen newOrientadorScreen = new NewOrientadorScreen(this, rootPaneCheckingEnabled);
+        NewOrientadorDialogScreen newOrientadorScreen = new NewOrientadorDialogScreen(this, rootPaneCheckingEnabled);
         newOrientadorScreen.setVisible(true);
         
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+
+        NewAdolescenteDialogScreen newAdolescenteScreen = new NewAdolescenteDialogScreen(this, rootPaneCheckingEnabled);
+        newAdolescenteScreen.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
