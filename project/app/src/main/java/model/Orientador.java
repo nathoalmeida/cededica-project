@@ -40,7 +40,7 @@ public class Orientador {
 
     @Override
     public String toString() {
-        return "Orientador{" + "id=" + id + ", nome=" + nome + '}';
+        return id + " - " + nome;
     }
     
    

@@ -6,18 +6,29 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import controller.AdolescenteController;
+import controller.OrientadorController;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import model.Orientador;
 
 /**
  *
  * @author nathoalmeida
  */
 public class MainScreen extends javax.swing.JFrame {
+    
+    OrientadorController orientadorController;
+    DefaultComboBoxModel orientadorModel;
 
     /**
      * Creates new form MainScreen
      */
     public MainScreen() {
         initComponents();
+        initDataController();
+        loadOrientadores();
         decorateTableOrientacao();
         
     }
@@ -38,20 +49,13 @@ public class MainScreen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanelOrientador = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxOrientadores = new javax.swing.JComboBox<>();
         jPanelAdolescenteTitle = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelAbaPIA = new javax.swing.JPanel();
-        jPanelAbaEducacional = new javax.swing.JPanel();
-        jPanelAbaPsicologica = new javax.swing.JPanel();
-        jPanelAbaSocioeconomica = new javax.swing.JPanel();
-        jPanelAbaVD = new javax.swing.JPanel();
-        jPanelAbaOrientacao = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTableOrientacao = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonNovaOrientacao = new javax.swing.JButton();
         jPanelAdolescenteLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -120,11 +124,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 102));
         jLabel3.setText("Selecione um orientador:");
 
-        jComboBox1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxOrientadores.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jComboBoxOrientadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOrientadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboBoxOrientadoresActionPerformed(evt);
             }
         });
 
@@ -136,7 +140,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxOrientadores, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelOrientadorLayout.setVerticalGroup(
@@ -145,7 +149,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelOrientadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                    .addComponent(jComboBoxOrientadores, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -175,142 +179,61 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelPrincipal.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
 
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 102));
-        jTabbedPane1.setToolTipText("");
-        jTabbedPane1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-
-        jPanelAbaPIA.setFont(new java.awt.Font("Carlito", 0, 14)); // NOI18N
-
-        javax.swing.GroupLayout jPanelAbaPIALayout = new javax.swing.GroupLayout(jPanelAbaPIA);
-        jPanelAbaPIA.setLayout(jPanelAbaPIALayout);
-        jPanelAbaPIALayout.setHorizontalGroup(
-            jPanelAbaPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
-        );
-        jPanelAbaPIALayout.setVerticalGroup(
-            jPanelAbaPIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("PIA", jPanelAbaPIA);
-
-        javax.swing.GroupLayout jPanelAbaEducacionalLayout = new javax.swing.GroupLayout(jPanelAbaEducacional);
-        jPanelAbaEducacional.setLayout(jPanelAbaEducacionalLayout);
-        jPanelAbaEducacionalLayout.setHorizontalGroup(
-            jPanelAbaEducacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
-        );
-        jPanelAbaEducacionalLayout.setVerticalGroup(
-            jPanelAbaEducacionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Triagem Educacional", jPanelAbaEducacional);
-
-        javax.swing.GroupLayout jPanelAbaPsicologicaLayout = new javax.swing.GroupLayout(jPanelAbaPsicologica);
-        jPanelAbaPsicologica.setLayout(jPanelAbaPsicologicaLayout);
-        jPanelAbaPsicologicaLayout.setHorizontalGroup(
-            jPanelAbaPsicologicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
-        );
-        jPanelAbaPsicologicaLayout.setVerticalGroup(
-            jPanelAbaPsicologicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Triagem Psicologia", jPanelAbaPsicologica);
-
-        javax.swing.GroupLayout jPanelAbaSocioeconomicaLayout = new javax.swing.GroupLayout(jPanelAbaSocioeconomica);
-        jPanelAbaSocioeconomica.setLayout(jPanelAbaSocioeconomicaLayout);
-        jPanelAbaSocioeconomicaLayout.setHorizontalGroup(
-            jPanelAbaSocioeconomicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
-        );
-        jPanelAbaSocioeconomicaLayout.setVerticalGroup(
-            jPanelAbaSocioeconomicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Triagem Socioeconômica", jPanelAbaSocioeconomica);
-
-        javax.swing.GroupLayout jPanelAbaVDLayout = new javax.swing.GroupLayout(jPanelAbaVD);
-        jPanelAbaVD.setLayout(jPanelAbaVDLayout);
-        jPanelAbaVDLayout.setHorizontalGroup(
-            jPanelAbaVDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 859, Short.MAX_VALUE)
-        );
-        jPanelAbaVDLayout.setVerticalGroup(
-            jPanelAbaVDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Visitas Domiciliares", jPanelAbaVD);
-
-        jTableOrientacao.setBackground(new java.awt.Color(242, 242, 242));
-        jTableOrientacao.setFont(new java.awt.Font("Carlito", 1, 14)); // NOI18N
         jTableOrientacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Data da orientação", "Conteúdo", "Orientado por:"
+                "Qtd", "Data", "Conteúdo", "Faltou?", "Orientado por:"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTableOrientacao.setToolTipText("");
-        jTableOrientacao.setColumnSelectionAllowed(true);
-        jTableOrientacao.setRowHeight(35);
-        jTableOrientacao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTableOrientacao.setShowGrid(true);
-        jTableOrientacao.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTableOrientacao);
-        jTableOrientacao.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableOrientacao.setRowHeight(40);
+        jScrollPane3.setViewportView(jTableOrientacao);
 
-        jButton1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 102));
-        jButton1.setText("Nova orientação");
-
-        javax.swing.GroupLayout jPanelAbaOrientacaoLayout = new javax.swing.GroupLayout(jPanelAbaOrientacao);
-        jPanelAbaOrientacao.setLayout(jPanelAbaOrientacaoLayout);
-        jPanelAbaOrientacaoLayout.setHorizontalGroup(
-            jPanelAbaOrientacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAbaOrientacaoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-        jPanelAbaOrientacaoLayout.setVerticalGroup(
-            jPanelAbaOrientacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAbaOrientacaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Orientação Socioeducativa", jPanelAbaOrientacao);
+        jButtonNovaOrientacao.setFont(new java.awt.Font("Carlito", 1, 18)); // NOI18N
+        jButtonNovaOrientacao.setForeground(new java.awt.Color(0, 0, 102));
+        jButtonNovaOrientacao.setText("Nova Orientação");
+        jButtonNovaOrientacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovaOrientacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonNovaOrientacao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonNovaOrientacao)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         jPanelAdolescenteLista.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
@@ -376,9 +299,9 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBoxOrientadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrientadoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jComboBoxOrientadoresActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
 
@@ -392,6 +315,10 @@ public class MainScreen extends javax.swing.JFrame {
         NewAdolescenteDialogScreen newAdolescenteScreen = new NewAdolescenteDialogScreen(this, rootPaneCheckingEnabled);
         newAdolescenteScreen.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButtonNovaOrientacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaOrientacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNovaOrientacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,29 +356,22 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButtonNovaOrientacao;
+    private javax.swing.JComboBox<String> jComboBoxOrientadores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanelAbaEducacional;
-    private javax.swing.JPanel jPanelAbaOrientacao;
-    private javax.swing.JPanel jPanelAbaPIA;
-    private javax.swing.JPanel jPanelAbaPsicologica;
-    private javax.swing.JPanel jPanelAbaSocioeconomica;
-    private javax.swing.JPanel jPanelAbaVD;
     private javax.swing.JPanel jPanelAdolescenteLista;
     private javax.swing.JPanel jPanelAdolescenteTitle;
     private javax.swing.JPanel jPanelOrientador;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JPanel jPanelTop;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableOrientacao;
     // End of variables declaration//GEN-END:variables
     
@@ -463,5 +383,30 @@ public class MainScreen extends javax.swing.JFrame {
     
     jTableOrientacao.setAutoCreateRowSorter(true);
 }
+    
+    public void initDataController() {
+        
+        orientadorController = new OrientadorController();
+    }
+    
+    public void loadOrientadores() {
+        
+        List<Orientador> orientadores = orientadorController.getAll();
+        
+        Vector<Orientador> orientadoresVector = new Vector();
+        
+        for (int i = 0; i< orientadores.size(); i++) {
+            Orientador orientador = orientadores.get(i);
+            orientadoresVector.add(orientador);
+            
+            
+        }
+       
+        orientadorModel = new DefaultComboBoxModel(orientadoresVector);
+        
+      
+        
+        jComboBoxOrientadores.setModel(orientadorModel);
+    }
 
 }

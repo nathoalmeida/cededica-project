@@ -30,20 +30,20 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
         jPanelTitle = new javax.swing.JPanel();
         jLabelTitle = new javax.swing.JLabel();
         jPanelAdolescente = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jLabelNome = new javax.swing.JLabel();
+        jTextFieldNome = new javax.swing.JTextField();
+        jLabelDataNasc = new javax.swing.JLabel();
+        jFormattedTextFieldDataNasc = new javax.swing.JFormattedTextField();
+        jLabelNumProcesso = new javax.swing.JLabel();
+        jFormattedTextFieldNumProc = new javax.swing.JFormattedTextField();
+        jLabelDataInicio = new javax.swing.JLabel();
+        jFormattedTextFieldDataInicio = new javax.swing.JFormattedTextField();
+        jLabelTipoMSE = new javax.swing.JLabel();
+        jCheckBoxLA = new javax.swing.JCheckBox();
+        jCheckBoxPSC = new javax.swing.JCheckBox();
+        jLabelOrientador = new javax.swing.JLabel();
+        jComboBoxOrientador = new javax.swing.JComboBox<>();
+        jButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -71,53 +71,53 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel1.setText("Nome:");
+        jLabelNome.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelNome.setText("Nome:");
 
-        jLabel2.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel2.setText("Data de nascimento:");
+        jLabelDataNasc.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelDataNasc.setText("Data de nascimento:");
 
-        jLabel3.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel3.setText("Número do Processo:");
-
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jFormattedTextFieldDataNasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                jFormattedTextFieldDataNascActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel4.setText("Data de Início da MSE:");
+        jLabelNumProcesso.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelNumProcesso.setText("Número do Processo:");
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jFormattedTextFieldNumProc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
-        jLabel5.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel5.setText("Tipo de MSE:");
+        jLabelDataInicio.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelDataInicio.setText("Data de Início da MSE:");
 
-        jCheckBox1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("LA");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        jLabelTipoMSE.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelTipoMSE.setText("Tipo de MSE:");
+
+        jCheckBoxLA.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jCheckBoxLA.setSelected(true);
+        jCheckBoxLA.setText("LA");
+        jCheckBoxLA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                jCheckBoxLAActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jCheckBox2.setText("PSC");
+        jCheckBoxPSC.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jCheckBoxPSC.setText("PSC");
 
-        jLabel6.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jLabel6.setText("Orientador:");
+        jLabelOrientador.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jLabelOrientador.setText("Orientador:");
 
-        jComboBox1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOrientador.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jComboBoxOrientador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 102));
-        jButton1.setText("Salvar");
+        jButtonSalvar.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jButtonSalvar.setForeground(new java.awt.Color(0, 0, 102));
+        jButtonSalvar.setText("Salvar");
 
         javax.swing.GroupLayout jPanelAdolescenteLayout = new javax.swing.GroupLayout(jPanelAdolescente);
         jPanelAdolescente.setLayout(jPanelAdolescenteLayout);
@@ -126,26 +126,26 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
             .addGroup(jPanelAdolescenteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelAdolescenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1)
-                    .addComponent(jFormattedTextField2)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField3)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNome)
+                    .addComponent(jLabelDataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelNumProcesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldNumProc)
+                    .addComponent(jFormattedTextFieldDataNasc)
+                    .addComponent(jLabelDataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldDataInicio)
+                    .addComponent(jLabelTipoMSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxOrientador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonSalvar))
                     .addGroup(jPanelAdolescenteLayout.createSequentialGroup()
                         .addGroup(jPanelAdolescenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
+                            .addComponent(jLabelOrientador)
                             .addGroup(jPanelAdolescenteLayout.createSequentialGroup()
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckBoxLA, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jCheckBoxPSC, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -153,33 +153,33 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
             jPanelAdolescenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdolescenteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabelNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabelDataNasc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(jLabelNumProcesso)
                 .addGap(12, 12, 12)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldNumProc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jLabelDataInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(jLabelTipoMSE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelAdolescenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
+                    .addComponent(jCheckBoxLA)
+                    .addComponent(jCheckBoxPSC))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(jLabelOrientador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                .addComponent(jButtonSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -201,13 +201,13 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBoxLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jCheckBoxLAActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void jFormattedTextFieldDataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataNascActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldDataNascActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,22 +252,22 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JCheckBox jCheckBoxLA;
+    private javax.swing.JCheckBox jCheckBoxPSC;
+    private javax.swing.JComboBox<String> jComboBoxOrientador;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataInicio;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataNasc;
+    private javax.swing.JFormattedTextField jFormattedTextFieldNumProc;
+    private javax.swing.JLabel jLabelDataInicio;
+    private javax.swing.JLabel jLabelDataNasc;
+    private javax.swing.JLabel jLabelNome;
+    private javax.swing.JLabel jLabelNumProcesso;
+    private javax.swing.JLabel jLabelOrientador;
+    private javax.swing.JLabel jLabelTipoMSE;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelAdolescente;
     private javax.swing.JPanel jPanelTitle;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,7 @@ public class Orientacao {
     private int id;
     private Date dataOrientacao;
     private String conteudo;
+    private boolean faltou;
     private int idAdolescente;
     private int idOrientador;
     
@@ -32,6 +33,14 @@ public class Orientacao {
 
     public Date getDataOrientacao() {
         return dataOrientacao;
+    }
+    
+    public boolean getFaltou() {
+        return faltou;
+    }
+    
+    public void setFaltou(boolean faltou) {
+        this.faltou = faltou;
     }
 
     public void setDataOrientacao(Date dataOrientacao) {
@@ -61,6 +70,7 @@ public class Orientacao {
     public void setIdOrientador(int idOrientador) {
         this.idOrientador = idOrientador;
     }
+    
 
     @Override
     public String toString() {

@@ -21,8 +21,8 @@ import util.ConnectionFactory;
 public class OrientacaoController {
     
     public void save(Orientacao orientacao) {
-        String sql = "INSERT INTO ORIENTACOES (dataOrientacao, conteudo, idOrientador, idAdolescente) " +
-                "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO ORIENTACOES (dataOrientacao, conteudo, idOrientador, idAdolescente, faltou) " +
+                "VALUES (?, ?, ?, ?, ?)";
         
         Connection connection = null;
         PreparedStatement statement = null;
@@ -34,6 +34,7 @@ public class OrientacaoController {
             statement.setString(2, orientacao.getConteudo());
             statement.setInt(3, orientacao.getIdOrientador());
             statement.setInt(4, orientacao.getIdAdolescente());
+            statement.setBoolean(5, orientacao.getFaltou());
             
             
             
@@ -53,6 +54,7 @@ public class OrientacaoController {
                 + "conteudo = ?,"
                 + "idOrientador = ?,"
                 + "idAdolescente = ?" 
+                + "faltou = ?"
                 + "WHERE id = ?";
         
         Connection connection = null;
@@ -68,6 +70,7 @@ public class OrientacaoController {
             statement.setInt(3, orientacao.getIdOrientador());
             statement.setInt(4, orientacao.getIdAdolescente());
             statement.setInt(5, orientacao.getId());
+            statement.setBoolean(6, orientacao.getFaltou());
             
             
             statement.execute();
@@ -129,6 +132,7 @@ public class OrientacaoController {
                 orientacao.setDataOrientacao(resultSet.getDate("dataOrientacao"));
                 orientacao.setIdAdolescente(resultSet.getInt("idAdolescente"));
                 orientacao.setIdOrientador(resultSet.getInt("idOrientador"));
+                orientacao.setFaltou(resultSet.getBoolean("faltou"));
                 
                
                 
