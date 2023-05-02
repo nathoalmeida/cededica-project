@@ -24,6 +24,10 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
     OrientadorController orientadorController;
     AdolescenteController adolescenteController;
     DefaultComboBoxModel orientadorModel;
+    Adolescente adolescente;
+    
+    
+    
     
     
     public NewAdolescenteDialogScreen(java.awt.Frame parent, boolean modal) {
@@ -236,7 +240,6 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
     private void jButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarMouseClicked
      try {
          
-         Adolescente adolescente = new Adolescente();
          Orientador orientador = (Orientador) jComboBoxOrientador.getSelectedItem();
          adolescente.setIdOrientador(orientador.getId());
          adolescente.setNome(jTextFieldNome.getText());
@@ -251,6 +254,7 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
          birthDate = dateFormat.parse(jFormattedTextFieldDataNasc.getText());
          initDate = dateFormat.parse(jFormattedTextFieldDataInicio.getText());
          
+         
          adolescente.setDataNasc(birthDate);
          adolescente.setDataInicio(initDate);
         
@@ -259,7 +263,7 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
          JOptionPane.showMessageDialog(rootPane, "Adolescente adicionado com sucesso");
          
      } catch(Exception e) {
-         JOptionPane.showMessageDialog(rootPane, e.getMessage());
+         JOptionPane.showMessageDialog(rootPane, e);
      }
      
      this.dispose();
