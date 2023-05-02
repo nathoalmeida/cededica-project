@@ -4,18 +4,33 @@
  */
 package view;
 
+import controller.AdolescenteController;
+import controller.OrientadorController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import model.Adolescente;
+import model.Orientador;
+
 /**
  *
  * @author nathoalmeida
  */
 public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
 
-    /**
-     * Creates new form NewAdolescenteDialogScreen
-     */
+    OrientadorController orientadorController;
+    AdolescenteController adolescenteController;
+    DefaultComboBoxModel orientadorModel;
+    
+    
     public NewAdolescenteDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initDataController();
+        loadOrientadores();
     }
 
     /**
@@ -87,7 +102,11 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
         jLabelNumProcesso.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jLabelNumProcesso.setText("Número do Processo:");
 
-        jFormattedTextFieldNumProc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            jFormattedTextFieldNumProc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabelDataInicio.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jLabelDataInicio.setText("Data de Início da MSE:");
@@ -118,6 +137,11 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
         jButtonSalvar.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(0, 0, 102));
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSalvarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelAdolescenteLayout = new javax.swing.GroupLayout(jPanelAdolescente);
         jPanelAdolescente.setLayout(jPanelAdolescenteLayout);
@@ -209,6 +233,38 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldDataNascActionPerformed
 
+    private void jButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarMouseClicked
+     try {
+         
+         Adolescente adolescente = new Adolescente();
+         Orientador orientador = (Orientador) jComboBoxOrientador.getSelectedItem();
+         adolescente.setIdOrientador(orientador.getId());
+         adolescente.setNome(jTextFieldNome.getText());
+         adolescente.setNumProcesso(jFormattedTextFieldNumProc.getText());
+         adolescente.setFazLA(jCheckBoxLA.isSelected());
+         adolescente.setFazPSC(jCheckBoxPSC.isSelected());
+         
+         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+         Date birthDate = null;
+         Date initDate = null;
+         
+         birthDate = dateFormat.parse(jFormattedTextFieldDataNasc.getText());
+         initDate = dateFormat.parse(jFormattedTextFieldDataInicio.getText());
+         
+         adolescente.setDataNasc(birthDate);
+         adolescente.setDataInicio(initDate);
+        
+         adolescenteController.save(adolescente);
+         
+         JOptionPane.showMessageDialog(rootPane, "Adolescente adicionado com sucesso");
+         
+     } catch(Exception e) {
+         JOptionPane.showMessageDialog(rootPane, e.getMessage());
+     }
+     
+     this.dispose();
+    }//GEN-LAST:event_jButtonSalvarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -270,4 +326,33 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelTitle;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
+
+     public void initDataController() {
+        
+        orientadorController = new OrientadorController();
+    }
+    
+    public void loadOrientadores() {
+        
+        List<Orientador> orientadores = orientadorController.getAll();
+        
+        Vector<Orientador> orientadoresVector = new Vector();
+        
+        for (int i = 0; i< orientadores.size(); i++) {
+            Orientador orientador = orientadores.get(i);
+            orientadoresVector.add(orientador);
+            
+            
+        }
+       
+        orientadorModel = new DefaultComboBoxModel(orientadoresVector);
+        
+      
+        
+        jComboBoxOrientador.setModel(orientadorModel);
+        
+       
+        
+        
+    }
 }
