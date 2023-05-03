@@ -11,6 +11,8 @@ import controller.OrientadorController;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import model.Adolescente;
 import model.Orientador;
 
 /**
@@ -20,7 +22,9 @@ import model.Orientador;
 public class MainScreen extends javax.swing.JFrame {
     
     OrientadorController orientadorController;
+    AdolescenteController adolescenteController;
     DefaultComboBoxModel orientadorModel;
+    DefaultListModel adolescenteModel;
 
     /**
      * Creates new form MainScreen
@@ -29,6 +33,7 @@ public class MainScreen extends javax.swing.JFrame {
         initComponents();
         initDataController();
         loadOrientadores();
+        initComponentsModel();
         decorateTableOrientacao();
         
     }
@@ -57,7 +62,7 @@ public class MainScreen extends javax.swing.JFrame {
         jButtonNovaOrientacao = new javax.swing.JButton();
         jPanelAdolescenteLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListAdolescentes = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -123,6 +128,11 @@ public class MainScreen extends javax.swing.JFrame {
         jComboBoxOrientadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxOrientadoresActionPerformed(evt);
+            }
+        });
+        jComboBoxOrientadores.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBoxOrientadoresPropertyChange(evt);
             }
         });
 
@@ -239,18 +249,18 @@ public class MainScreen extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jList1.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListAdolescentes.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
+        jListAdolescentes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setAlignmentX(1.0F);
-        jList1.setFixedCellHeight(35);
-        jList1.setSelectionBackground(new java.awt.Color(0, 0, 102));
-        jList1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jList1);
+        jListAdolescentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListAdolescentes.setAlignmentX(1.0F);
+        jListAdolescentes.setFixedCellHeight(35);
+        jListAdolescentes.setSelectionBackground(new java.awt.Color(0, 0, 102));
+        jListAdolescentes.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jListAdolescentes);
 
         javax.swing.GroupLayout jPanelAdolescenteListaLayout = new javax.swing.GroupLayout(jPanelAdolescenteLista);
         jPanelAdolescenteLista.setLayout(jPanelAdolescenteListaLayout);
@@ -297,10 +307,6 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxOrientadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrientadoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxOrientadoresActionPerformed
-
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
 
         NewOrientadorDialogScreen newOrientadorScreen = new NewOrientadorDialogScreen(this, rootPaneCheckingEnabled);
@@ -317,6 +323,16 @@ public class MainScreen extends javax.swing.JFrame {
     private void jButtonNovaOrientacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaOrientacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonNovaOrientacaoActionPerformed
+
+    private void jComboBoxOrientadoresPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxOrientadoresPropertyChange
+       
+        
+    }//GEN-LAST:event_jComboBoxOrientadoresPropertyChange
+
+    private void jComboBoxOrientadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrientadoresActionPerformed
+        
+        initComponentsModel();
+    }//GEN-LAST:event_jComboBoxOrientadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +377,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListAdolescentes;
     private javax.swing.JPanel jPanelAdolescenteLista;
     private javax.swing.JPanel jPanelAdolescenteTitle;
     private javax.swing.JPanel jPanelOrientador;
@@ -384,6 +400,7 @@ public class MainScreen extends javax.swing.JFrame {
     public void initDataController() {
         
         orientadorController = new OrientadorController();
+        adolescenteController = new AdolescenteController();
     }
     
     public void loadOrientadores() {
@@ -399,13 +416,45 @@ public class MainScreen extends javax.swing.JFrame {
             
         }
        
+       
         orientadorModel = new DefaultComboBoxModel(orientadoresVector);
-        
       
         
         jComboBoxOrientadores.setModel(orientadorModel);
         
         
     }
+    
+    public void loadAdolescentes(int idOrientador) {
+        
+        adolescenteModel = new DefaultListModel();
+        List<Adolescente> adolescentes = adolescenteController.getAll(idOrientador);
+        adolescenteModel.clear();
+        
+        for(int i = 0; i < adolescentes.size(); i++) {
+            Adolescente adolescente = adolescentes.get(i);
+            adolescenteModel.addElement(adolescente);
+        }
+        
+        jListAdolescentes.setModel(adolescenteModel);
+        
+    }
+    
+    
+    public void initComponentsModel() {
+        
+         Orientador orientador = new Orientador();
+        
+        int orientadorIndex = jComboBoxOrientadores.getSelectedIndex();
+        orientador = (Orientador)orientadorModel.getElementAt(orientadorIndex);
+        
+        
+        loadAdolescentes(orientador.getId());
+        
+        
+        
+    };
+    
+    
 
 }

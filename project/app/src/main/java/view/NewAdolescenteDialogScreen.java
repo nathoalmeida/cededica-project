@@ -30,11 +30,14 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
     
     
     
+    
     public NewAdolescenteDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initDataController();
         loadOrientadores();
+        
+       
     }
 
     /**
@@ -239,8 +242,9 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
 
     private void jButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalvarMouseClicked
      try {
-         
-         Orientador orientador = (Orientador) jComboBoxOrientador.getSelectedItem();
+         adolescente = new Adolescente();
+         int orientadorIndex = jComboBoxOrientador.getSelectedIndex();
+         Orientador orientador = (Orientador) orientadorModel.getElementAt(orientadorIndex);
          adolescente.setIdOrientador(orientador.getId());
          adolescente.setNome(jTextFieldNome.getText());
          adolescente.setNumProcesso(jFormattedTextFieldNumProc.getText());
@@ -334,6 +338,7 @@ public class NewAdolescenteDialogScreen extends javax.swing.JDialog {
      public void initDataController() {
         
         orientadorController = new OrientadorController();
+        adolescenteController = new AdolescenteController();
     }
     
     public void loadOrientadores() {

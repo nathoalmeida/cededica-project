@@ -25,8 +25,8 @@ public class Adolescente {
     private int idOrientador;
     
     public Adolescente() {
-        fazLA = true;
-        dataInicio = Date.from(Instant.now());
+        
+        
     }
     
     
@@ -98,8 +98,7 @@ public class Adolescente {
     @Override
     public String toString() {
         
-        return "Adolescente{" + "id=" + id + ", nome=" + nome + ", numProcesso=" + numProcesso + ", dataNasc=" + dataNasc + ", dataInicio=" + dataInicio
-                + ", fazLA=" + fazLA + ", fazPSC=" + fazPSC + ", idOrientador=" + idOrientador + '}';
+        return nome;
         }
     
     
