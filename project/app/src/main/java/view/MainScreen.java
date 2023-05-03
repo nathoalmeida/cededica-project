@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import controller.AdolescenteController;
 import controller.OrientadorController;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -318,6 +320,12 @@ public class MainScreen extends javax.swing.JFrame {
 
         NewAdolescenteDialogScreen newAdolescenteScreen = new NewAdolescenteDialogScreen(this, rootPaneCheckingEnabled);
         newAdolescenteScreen.setVisible(true);
+        
+        newAdolescenteScreen.addWindowListener(new WindowAdapter() {
+        public void windowClosed(WindowEvent e) {
+            initComponentsModel();
+        }
+    });
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButtonNovaOrientacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaOrientacaoActionPerformed
