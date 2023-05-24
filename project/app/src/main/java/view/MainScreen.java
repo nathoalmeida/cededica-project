@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import controller.AdolescenteController;
 import controller.OrientadorController;
+import controller.OrientacaoController;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -15,7 +16,9 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import model.Adolescente;
+import model.Orientacao;
 import model.Orientador;
+import util.OrientacaoTableModel;
 
 /**
  *
@@ -25,8 +28,10 @@ public class MainScreen extends javax.swing.JFrame {
     
     OrientadorController orientadorController;
     AdolescenteController adolescenteController;
+    OrientacaoController orientacaoController;
     DefaultComboBoxModel orientadorModel;
     DefaultListModel adolescenteModel;
+    OrientacaoTableModel orientacaoModel;
 
     /**
      * Creates new form MainScreen
@@ -58,15 +63,15 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelOrientador = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxOrientadores = new javax.swing.JComboBox<>();
-        jPanelAdolescenteTitle = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
         jButtonNovaOrientacao = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableOrientacao = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         jPanelAdolescenteLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListAdolescentes = new javax.swing.JList<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -169,7 +174,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanelOrientadorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(49, 49, 49)
                 .addComponent(jComboBoxOrientadores, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -178,31 +183,8 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOrientadorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOrientadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxOrientadores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPanelAdolescenteTitle.setBackground(java.awt.Color.white);
-        jPanelAdolescenteTitle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel4.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel4.setText("Adolescentes:");
-
-        javax.swing.GroupLayout jPanelAdolescenteTitleLayout = new javax.swing.GroupLayout(jPanelAdolescenteTitle);
-        jPanelAdolescenteTitle.setLayout(jPanelAdolescenteTitleLayout);
-        jPanelAdolescenteTitleLayout.setHorizontalGroup(
-            jPanelAdolescenteTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteTitleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelAdolescenteTitleLayout.setVerticalGroup(
-            jPanelAdolescenteTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteTitleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -251,28 +233,40 @@ public class MainScreen extends javax.swing.JFrame {
         jTableOrientacao.setRowHeight(40);
         jScrollPane3.setViewportView(jTableOrientacao);
 
+        jLabel7.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel7.setText("Orientações:");
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                .addComponent(jButtonNovaOrientacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
+                .addComponent(jButtonNovaOrientacao, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonNovaOrientacao)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovaOrientacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jPanelAdolescenteLista.setBackground(java.awt.Color.white);
+        jPanelAdolescenteLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelAdolescenteLista.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jListAdolescentes.setBorder(null);
         jListAdolescentes.setFont(new java.awt.Font("Carlito", 0, 16)); // NOI18N
         jListAdolescentes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -286,6 +280,10 @@ public class MainScreen extends javax.swing.JFrame {
         jListAdolescentes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jListAdolescentes);
 
+        jLabel6.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel6.setText("Adolescentes:");
+
         javax.swing.GroupLayout jPanelAdolescenteListaLayout = new javax.swing.GroupLayout(jPanelAdolescenteLista);
         jPanelAdolescenteLista.setLayout(jPanelAdolescenteListaLayout);
         jPanelAdolescenteListaLayout.setHorizontalGroup(
@@ -293,10 +291,17 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteListaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteListaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelAdolescenteListaLayout.setVerticalGroup(
             jPanelAdolescenteListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdolescenteListaLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1262, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -305,22 +310,17 @@ public class MainScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelAdolescenteTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelAdolescenteLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelAdolescenteLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelOrientador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanelOrientador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelAdolescenteTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelOrientador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelAdolescenteLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -406,11 +406,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jListAdolescentes;
     private javax.swing.JPanel jPanelAdolescenteLista;
-    private javax.swing.JPanel jPanelAdolescenteTitle;
     private javax.swing.JPanel jPanelOrientador;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JPanel jPanelTop;
@@ -471,10 +471,19 @@ public class MainScreen extends javax.swing.JFrame {
         
     }
     
+    public void loadOrientacoes(int idAdolescente) {
+        
+        List<Orientacao> orientacoes = orientacaoController.getAll(idAdolescente);
+        orientacaoModel.setOrientacoes(orientacoes);
+        
+        
+    }
+    
     
     public void initComponentsModel() {
         
          Orientador orientador;
+         
         
         int orientadorIndex = jComboBoxOrientadores.getSelectedIndex();
         orientador = (Orientador)orientadorModel.getElementAt(orientadorIndex);
@@ -482,9 +491,23 @@ public class MainScreen extends javax.swing.JFrame {
         
         loadAdolescentes(orientador.getId());
         
+        orientacaoModel = new OrientacaoTableModel();
+        jTableOrientacao.setModel(orientacaoModel);
+        
+        if(!adolescenteModel.isEmpty()) {
+            jListAdolescentes.setSelectedIndex(0);
+            
+           Adolescente adolescente = (Adolescente) adolescenteModel.get(0);
+            
+           
+           // VER AQUI O QUE TÁ ROLANDO
+            loadOrientacoes(adolescente.getId());
+            
+        }
         
         
-    };
+        
+    }
     
     
 

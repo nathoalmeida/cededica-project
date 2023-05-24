@@ -107,9 +107,9 @@ public class OrientacaoController {
         
     }
     
-    public List<Orientacao> getAll() {
+    public List<Orientacao> getAll(int idAdolescente) {
         
-        String sql = "SELECT * FROM ORIENTACOES";
+        String sql = "SELECT * FROM ORIENTACOES WHERE idAdolescente = ?";
         
         Connection connection = null;
         PreparedStatement statement = null;
@@ -121,6 +121,8 @@ public class OrientacaoController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             
+            statement.setInt(1, idAdolescente);
+           
             
             resultSet = statement.executeQuery();
             

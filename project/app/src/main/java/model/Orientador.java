@@ -43,5 +43,10 @@ public class Orientador {
         return id + " - " + nome;
     }
     
+    public String getOrientador(int id) {
+        
+        return nome;
+    }
+    
    
 }

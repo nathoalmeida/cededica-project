@@ -129,5 +129,30 @@ public class OrientadorController {
         return orientadores;
     }
     
+    public String getNomeOrientador(int id) {
+        
+        String sql = "SELECT nome FROM ORIENTADORES WHERE id = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        String nome = null;
+       
+        
+        try {
+            
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            
+            resultSet = statement.executeQuery();
+            
+            nome = resultSet.getString("nome");
+            
+            } catch(SQLException ex) {
+                throw new RuntimeException("Erro" + ex.getMessage() + ex);
+        }
+        
+        return nome;
+    }
     
 }

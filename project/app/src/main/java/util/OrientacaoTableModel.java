@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Orientacao;
 import model.Orientador;
+import controller.OrientadorController;
 
 /**
  *
@@ -20,7 +21,9 @@ public class OrientacaoTableModel extends AbstractTableModel {
     
     String[] columns = {"Qtd", "Data da orientação", "Conteúdo", "Orientado por:", "Faltou?", "Editar", "Excluir"};
     List<Orientacao> orientacoes = new ArrayList();
-    List<Orientador> orientadores = new ArrayList();
+    
+    OrientadorController orientadorController;
+    
     
     @Override
     public int getRowCount() {
@@ -57,7 +60,7 @@ public class OrientacaoTableModel extends AbstractTableModel {
         
         switch(columnIndex) {
             case 0: 
-                break;
+                return "";
             case 1:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 return dateFormat.format(orientacoes.get(rowIndex).getDataOrientacao());
@@ -66,13 +69,45 @@ public class OrientacaoTableModel extends AbstractTableModel {
                 return orientacoes.get(rowIndex).getConteudo();
                 
             case 3:
-                Orientador orientador = new Orientador();
                 
                 int orientadorId = orientacoes.get(rowIndex).getIdOrientador();
                 
-                // CRIAR MÉTODO NO ORIENTADOR CONTROLLER ????????
-                return orientador.toString();
+                orientadorController.getNomeOrientador(orientadorId);
             
-        }
+            case 4:
+                return orientacoes.get(rowIndex).getFaltou();
+                
+            case 5:
+                return "";
+                
+            case 6:
+                return "";
+            
+            default:
+                return "Dados não encontrados";
+        } 
+        
     }
+    
+    @Override 
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        orientacoes.get(rowIndex).setFaltou((boolean) aValue);
+    }
+    
+     public String[] getColumns() {
+        return columns;
+    }
+
+    public List<Orientacao> getOrientacoes() {
+        return orientacoes;
+    }
+
+    public void setOrientacoes(List<Orientacao> orientacoes) {
+        this.orientacoes = orientacoes;
+    }
+    
+    
+    
+    
+    
 }
