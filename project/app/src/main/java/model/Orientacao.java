@@ -18,6 +18,7 @@ public class Orientacao {
     private boolean faltou;
     private int idAdolescente;
     private int idOrientador;
+    private String nomeOrientador;
     
     public void Orientacao() {
         
@@ -37,6 +38,10 @@ public class Orientacao {
     
     public boolean getFaltou() {
         return faltou;
+    }
+    
+    public String getNomeOrientador() {
+        return nomeOrientador;
     }
     
     public void setFaltou(boolean faltou) {
@@ -69,6 +74,10 @@ public class Orientacao {
 
     public void setIdOrientador(int idOrientador) {
         this.idOrientador = idOrientador;
+    }
+    
+    public void setNomeOrientador(String nomeOrientador) {
+        this.nomeOrientador = nomeOrientador;
     }
     
 

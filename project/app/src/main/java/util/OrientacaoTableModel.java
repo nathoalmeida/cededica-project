@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Orientacao;
-import model.Orientador;
-import controller.OrientadorController;
+
 
 /**
  *
@@ -22,7 +21,7 @@ public class OrientacaoTableModel extends AbstractTableModel {
     String[] columns = {"Qtd", "Data da orientação", "Conteúdo", "Orientado por:", "Faltou?", "Editar", "Excluir"};
     List<Orientacao> orientacoes = new ArrayList();
     
-    OrientadorController orientadorController;
+    
     
     
     @Override
@@ -69,10 +68,9 @@ public class OrientacaoTableModel extends AbstractTableModel {
                 return orientacoes.get(rowIndex).getConteudo();
                 
             case 3:
+               
+                return orientacoes.get(rowIndex).getNomeOrientador();
                 
-                int orientadorId = orientacoes.get(rowIndex).getIdOrientador();
-                
-                orientadorController.getNomeOrientador(orientadorId);
             
             case 4:
                 return orientacoes.get(rowIndex).getFaltou();

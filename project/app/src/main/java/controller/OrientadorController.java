@@ -139,10 +139,13 @@ public class OrientadorController {
         String nome = null;
        
         
+        
         try {
             
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
+            
+            statement.setInt(1, id);
             
             resultSet = statement.executeQuery();
             

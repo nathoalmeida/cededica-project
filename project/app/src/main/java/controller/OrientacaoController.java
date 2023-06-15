@@ -109,7 +109,8 @@ public class OrientacaoController {
     
     public List<Orientacao> getAll(int idAdolescente) {
         
-        String sql = "SELECT * FROM ORIENTACOES WHERE idAdolescente = ?";
+        String sql = "SELECT o.id, o.dataOrientacao, o.idAdolescente, o.idOrientador, o.conteudo, o.faltou, ORIENTADORES.nome FROM ORIENTACOES "
+                + "as o JOIN ORIENTADORES ON o.idOrientador = ORIENTADORES.id WHERE idAdolescente = ?";
         
         Connection connection = null;
         PreparedStatement statement = null;
@@ -135,6 +136,7 @@ public class OrientacaoController {
                 orientacao.setIdAdolescente(resultSet.getInt("idAdolescente"));
                 orientacao.setIdOrientador(resultSet.getInt("idOrientador"));
                 orientacao.setFaltou(resultSet.getBoolean("faltou"));
+                orientacao.setNomeOrientador(resultSet.getString("nome"));
                 
                
                 

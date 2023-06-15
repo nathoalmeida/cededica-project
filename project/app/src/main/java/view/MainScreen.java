@@ -278,6 +278,11 @@ public class MainScreen extends javax.swing.JFrame {
         jListAdolescentes.setFixedCellHeight(50);
         jListAdolescentes.setSelectionBackground(new java.awt.Color(0, 0, 102));
         jListAdolescentes.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jListAdolescentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListAdolescentesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListAdolescentes);
 
         jLabel6.setFont(new java.awt.Font("Carlito", 0, 18)); // NOI18N
@@ -363,6 +368,16 @@ public class MainScreen extends javax.swing.JFrame {
         initComponentsModel();
     }//GEN-LAST:event_jComboBoxOrientadoresActionPerformed
 
+    private void jListAdolescentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAdolescentesMouseClicked
+
+        int adolescenteIndex = jListAdolescentes.getSelectedIndex();
+        Adolescente adolescente = (Adolescente) adolescenteModel.get(adolescenteIndex);
+        loadOrientacoes(adolescente.getId()); 
+        
+     
+        
+    }//GEN-LAST:event_jListAdolescentesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -425,13 +440,14 @@ public class MainScreen extends javax.swing.JFrame {
     jTableOrientacao.getTableHeader().setBackground(new Color(255, 255, 255));
     jTableOrientacao.getTableHeader().setForeground(new Color(0, 0, 102));
     
-    jTableOrientacao.setAutoCreateRowSorter(true);
+    // jTableOrientacao.setAutoCreateRowSorter(true);
 }
     
     public void initDataController() {
         
         orientadorController = new OrientadorController();
         adolescenteController = new AdolescenteController();
+        orientacaoController = new OrientacaoController();
     }
     
     public void loadOrientadores() {
@@ -471,19 +487,24 @@ public class MainScreen extends javax.swing.JFrame {
         
     }
     
-    public void loadOrientacoes(int idAdolescente) {
+  public void loadOrientacoes(int idAdolescente) {
         
+      
         List<Orientacao> orientacoes = orientacaoController.getAll(idAdolescente);
+        
+        
         orientacaoModel.setOrientacoes(orientacoes);
+        
+       
+        /*jTableOrientacao.setModel(orientacaoModel); */
         
         
     }
     
-    
     public void initComponentsModel() {
         
          Orientador orientador;
-         
+         int adolescenteIndex;
         
         int orientadorIndex = jComboBoxOrientadores.getSelectedIndex();
         orientador = (Orientador)orientadorModel.getElementAt(orientadorIndex);
@@ -492,23 +513,23 @@ public class MainScreen extends javax.swing.JFrame {
         loadAdolescentes(orientador.getId());
         
         orientacaoModel = new OrientacaoTableModel();
-        jTableOrientacao.setModel(orientacaoModel);
+        jTableOrientacao.setModel(orientacaoModel); 
         
         if(!adolescenteModel.isEmpty()) {
+            
             jListAdolescentes.setSelectedIndex(0);
-            
-           Adolescente adolescente = (Adolescente) adolescenteModel.get(0);
-            
-           
-           // VER AQUI O QUE TÁ ROLANDO
+            Adolescente adolescente  = (Adolescente) adolescenteModel.get(0);
             loadOrientacoes(adolescente.getId());
+            
+            
+        }
+      
             
         }
         
-        
-        
-    }
+   
+   
     
-    
+      
 
 }
