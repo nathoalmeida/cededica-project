@@ -103,9 +103,7 @@ public class OrientacaoTableModel extends AbstractTableModel {
     public void setOrientacoes(List<Orientacao> orientacoes) {
         this.orientacoes = orientacoes;
     }
-    
-    
-    
+     
     
     
 }

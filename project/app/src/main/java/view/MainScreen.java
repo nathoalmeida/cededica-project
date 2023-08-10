@@ -241,13 +241,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                 .addGap(78, 78, 78)
                 .addComponent(jButtonNovaOrientacao, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +257,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jButtonNovaOrientacao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 452, Short.MAX_VALUE))
         );
 
         jPanelAdolescenteLista.setBackground(java.awt.Color.white);
@@ -371,7 +371,7 @@ public class MainScreen extends javax.swing.JFrame {
     private void jListAdolescentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAdolescentesMouseClicked
 
         int adolescenteIndex = jListAdolescentes.getSelectedIndex();
-        Adolescente adolescente = (Adolescente) adolescenteModel.get(adolescenteIndex);
+        Adolescente adolescente = (Adolescente) adolescenteModel.getElementAt(adolescenteIndex); 
         loadOrientacoes(adolescente.getId()); 
         
      
@@ -488,15 +488,12 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
   public void loadOrientacoes(int idAdolescente) {
-        
       
-        List<Orientacao> orientacoes = orientacaoController.getAll(idAdolescente);
-        
-        
-        orientacaoModel.setOrientacoes(orientacoes);
-        
-       
-        /*jTableOrientacao.setModel(orientacaoModel); */
+      
+      List<Orientacao> orientacoes = orientacaoController.getAll(idAdolescente);
+      orientacaoModel = new OrientacaoTableModel();
+      orientacaoModel.setOrientacoes(orientacoes);
+      jTableOrientacao.setModel(orientacaoModel); 
         
         
     }
@@ -512,17 +509,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         loadAdolescentes(orientador.getId());
         
-        orientacaoModel = new OrientacaoTableModel();
-        jTableOrientacao.setModel(orientacaoModel); 
         
-        if(!adolescenteModel.isEmpty()) {
-            
-            jListAdolescentes.setSelectedIndex(0);
-            Adolescente adolescente  = (Adolescente) adolescenteModel.get(0);
-            loadOrientacoes(adolescente.getId());
-            
-            
-        }
       
             
         }
